@@ -31,10 +31,11 @@ When implementing PPO, a few tricks are necessary for good performance across en
 * Observation normalization followed by clipping to a range (e.g between -10 and 10). This is usually achieved by maintaining a running mean and variance of observations coming from the simulator. [Welford's algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm) is an efficient and numerically stable algorithm for online variance estimation. We have used a Python (Numpy) implementation of Welford's algorithm from [here](https://github.com/a-mitani/welford).
 * Normalization of generalized advantage estimates at the batch level.
 * Orthogonal initialization of actor, critic networks with appropriate scaling.
-* Gradient clipping : ensure that the norm of the concatenated gradients of all parameters does not exceed 0.5
-* Early stopping : calculate approximate KL divergence between the current policy and the target, and stop the policy updates of the current epoch if the approximate KL divergence exceeds some preset threshold.
+* Gradient clipping - ensure that the norm of the concatenated gradients of all parameters does not exceed 0.5.
+* Early stopping - calculate approximate KL divergence between the current policy and the target, and stop the policy updates of the current epoch if the approximate KL divergence exceeds some preset threshold.
 * No weightage given to entropy term in actor loss function.
-Some other tricks which we found unnecessary, but which can be found in other PPO implementations are
+
+Some other tricks which we found unnecessary, but can be found in other PPO implementations are
 * Reward scaling
 * Clip value loss
   
