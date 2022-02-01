@@ -28,7 +28,8 @@ A clean and minimal implementation of PPO (Proximal Policy Optimization) algorit
 
 ## A few implementation details 
 When implementing PPO, a few tricks are necessary for good performance across environments. These are not clearly mentioned in the original paper.
-* Observation normalization followed by clipping to a range (usually between -10 and 10). This is achieved by maintaining a running mean and variance of observations coming from the simulator. [Welford's algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm) is an efficient and numerically stable algorithm for online variance estimation. We have used a Python (Numpy) implementation of Welford's algorithm from [here](https://github.com/a-mitani/welford).
+* Observation normalization followed by clipping to a range (usually between -10 and 10). This is achieved by maintaining a running mean and variance of observations coming from the simulator. For this purpose we used a Numpy implementation of [Welford's algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm), an efficient and numerically stable algorithm for online variance estimation from [here](https://github.com/a-mitani/welford).
+* Generalized advantage estimation.
 * Normalization of generalized advantage estimates at the batch level.
 * Orthogonal initialization of actor, critic networks with appropriate scaling.
 * Gradient clipping - ensure that the norm of the concatenated gradients of all parameters does not exceed 0.5.
@@ -37,7 +38,7 @@ When implementing PPO, a few tricks are necessary for good performance across en
 * Separate actor and critic networks.
 * tanh activation functions.
 
-Some other tricks which we found unnecessary, but can be found in other PPO implementations are
+Some other tricks that can be found in other PPO implementations, which we found not necessary are,
 * Reward scaling - rewards are divided by the standard deviation of a rolling discounted sum of the rewards, followed by clipping to a range (usually between -10 and 10).
 * Value function clipping - the value function loss is clipped in a manner that is similar to the PPO’s clipped surrogate objective.
   
