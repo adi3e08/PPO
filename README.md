@@ -28,7 +28,7 @@ A clean and minimal implementation of PPO (Proximal Policy Optimization) algorit
 
 ## A few implementation details 
 When implementing PPO, a few tricks are necessary for good performance across environments. These are not clearly mentioned in the original paper.
-* Observation normalization followed by clipping to a range (usually between -10 and 10). This is achieved by maintaining a running mean and variance of observations coming from the simulator. For this purpose we used a Numpy implementation of [Welford's algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm), an efficient and numerically stable algorithm for online variance estimation from [here](https://github.com/a-mitani/welford).
+* Observation normalization followed by clipping to a range (usually between -10 and 10). This is achieved by maintaining a running mean and variance of observations coming from the simulator. For this purpose we use [Welford's algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm), an efficient and numerically stable algorithm for online variance estimation. We use a Numpy implementation of Welford's algorithm from [here](https://github.com/a-mitani/welford).
 * Generalized advantage estimation.
 * Normalization of generalized advantage estimates at the batch level.
 * Orthogonal initialization of actor, critic networks with appropriate scaling.
