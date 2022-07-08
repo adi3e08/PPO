@@ -1,5 +1,5 @@
-# PPO-Pytorch
-A clean and minimal implementation of PPO (Proximal Policy Optimization) algorithm in Pytorch, for continuous action spaces.
+# Proximal Policy Optimization (PPO)
+A clean and minimal implementation of Proximal Policy Optimization (PPO) algorithm in Pytorch, for continuous action spaces.
 
 ## References
 * "Proximal Policy Optimization Algorithms", Schulman et al. [Link](https://arxiv.org/abs/1707.06347).
