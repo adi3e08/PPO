@@ -27,9 +27,9 @@ def init_weights(module, gain):
 
 # Actor Network
 class Pi_FC(torch.nn.Module):
-    def __init__(self, state_size, action_size):
+    def __init__(self, obs_size, action_size):
         super(Pi_FC, self).__init__()
-        self.fc1 = torch.nn.Linear(state_size, 64)
+        self.fc1 = torch.nn.Linear(obs_size, 64)
         self.fc2 = torch.nn.Linear(64, 64)
         self.mu = torch.nn.Linear(64, action_size)
         self.log_sigma = torch.nn.Parameter(torch.zeros(action_size))
@@ -52,9 +52,9 @@ class Pi_FC(torch.nn.Module):
 
 # Critic network
 class V_FC(torch.nn.Module):
-    def __init__(self, state_size, action_size):
+    def __init__(self, obs_size, action_size):
         super(V_FC, self).__init__()
-        self.fc1 = torch.nn.Linear(state_size, 64)
+        self.fc1 = torch.nn.Linear(obs_size, 64)
         self.fc2 = torch.nn.Linear(64, 64)
         self.v = torch.nn.Linear(64, 1)
         module_gains = {
@@ -101,10 +101,10 @@ class PPO:
 
         self.device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 
-        self.actor = Pi_FC(self.env.state_size,self.env.action_size).to(self.device)
+        self.actor = Pi_FC(self.obs_size,self.action_size).to(self.device)
 
         if self.arglist.mode == "train":
-            self.critic = V_FC(self.env.state_size,self.env.action_size).to(self.device)
+            self.critic = V_FC(self.obs_size,self.action_size).to(self.device)
 
             path = "./log/"+self.arglist.domain+"_"+self.arglist.task
             self.exp_dir = os.path.join(path, "seed_"+str(self.arglist.seed))
@@ -182,7 +182,7 @@ class PPO:
             o,_,_ = process_observation(self.env.reset())
             o = self.normalize_observation(o, True)
             while True:
-                o_ = torch.tensor(o, dtype=torch.float, device=self.device).unsqueeze(0)
+                o_ = torch.tensor(o, dtype=torch.float64, device=self.device).unsqueeze(0)
                 with torch.no_grad():
                     dist = self.actor(o_)
                     values_ = self.critic(o_)
@@ -196,11 +196,11 @@ class PPO:
                 o_1 = self.normalize_observation(o_1, True)
                 t += 1
                 ep_r += r
-                R.append(torch.tensor(r, dtype=torch.float, device=self.device))
+                R.append(torch.tensor(r, dtype=torch.float64, device=self.device))
                 o = o_1
                 if done or t % self.arglist.update_every == 0:
                     with torch.no_grad():
-                        next_values = self.critic(torch.tensor(o_1, dtype=torch.float, device=self.device).unsqueeze(0))
+                        next_values = self.critic(torch.tensor(o_1, dtype=torch.float64, device=self.device).unsqueeze(0))
                     values.append(next_values[0])
                     v_n_temp = []
                     gae_ = 0
@@ -296,7 +296,7 @@ class PPO:
             ep_r = 0
             while True:
                 with torch.no_grad():
-                    dist = self.actor(torch.tensor(o, dtype=torch.float, device=self.device).unsqueeze(0))
+                    dist = self.actor(torch.tensor(o, dtype=torch.float64, device=self.device).unsqueeze(0))
                 a = dist.sample().cpu().numpy()[0] 
                 o_1, r, done = process_observation(self.env.step(a))
                 o_1 = self.normalize_observation(o_1)
