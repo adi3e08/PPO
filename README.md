@@ -1,29 +1,21 @@
 # Proximal Policy Optimization (PPO)
-A clean and minimal implementation of Proximal Policy Optimization (PPO) algorithm in Pytorch, for continuous action spaces.
+This repository contains a clean and minimal implementation of Proximal Policy Optimization (PPO) algorithm in Pytorch.
 
-## References
-* "Proximal Policy Optimization Algorithms", Schulman et al. [Link](https://arxiv.org/abs/1707.06347).
+PPO is a model-free RL algorithm for continuous action spaces. It adopts an on-policy actor-critic approach and uses stochastic policies.
 
-## Tested on
+## Results
+I trained DDPG on a few continuous control tasks from [Deepmind Control Suite](https://github.com/deepmind/dm_control/tree/master/dm_control/suite). Results are below.
 
-* Cartpole Swingup ([Deepmind Control Suite](https://github.com/deepmind/dm_control/tree/master/dm_control/suite)) - Swing up and balance an unactuated pole by applying forces to a cart at its base.
-
+* Cartpole Swingup : Swing up and balance an unactuated pole by applying forces to a cart at its base.
 <p align="center">
-<img src=".media/ppo_cartpole_swingup.png" width="50%" height="50%"/>
+<!-- <img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_cartpole_swingup.png" width="40%"/> -->
+<img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_cartpole_swingup.gif" width="31%"/>
 </p>
 
+* Reacher Hard : Control a two-link robotic arm to reach a random target location.
 <p align="center">
-<img src=".media/ppo_cartpole_swingup.gif" width="50%" height="50%"/>
-</p>
-
-* Reacher Hard ([Deepmind Control Suite](https://github.com/deepmind/dm_control/tree/master/dm_control/suite)) - Control a two-link robotic arm to reach a randomized target location.
-
-<p align="center">
-<img src=".media/ppo_reacher_hard.png" width="50%" height="50%"/>
-</p>
-
-<p align="center">
-<img src=".media/ppo_reacher_hard.gif" width="50%" height="50%"/>
+<!-- <img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_reacher_hard.png" width="40%"/> -->
+<img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_reacher_hard.gif" width="31%"/>
 </p>
 
 ## A few implementation details 
@@ -42,3 +34,5 @@ Some other tricks that can be found in other PPO implementations, which we found
 * Reward scaling - rewards are divided by the standard deviation of a rolling discounted sum of the rewards, followed by clipping to a range (usually between -10 and 10).
 * Value function clipping - the value function loss is clipped in a manner that is similar to the PPO’s clipped surrogate objective.
   
+## References
+* "Proximal Policy Optimization Algorithms", Schulman et al. [Link](https://arxiv.org/abs/1707.06347).
