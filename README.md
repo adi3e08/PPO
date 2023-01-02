@@ -36,9 +36,29 @@ When implementing PPO, a few tricks are necessary for good performance across en
 * Separate actor and critic networks.
 * tanh activation functions.
 
-Some other tricks that can be found in other PPO implementations, which we found not necessary are,
+Some other tricks which can be found in other PPO implementations, which we found not necessary are,
 * Reward scaling - rewards are divided by the standard deviation of a rolling discounted sum of the rewards, followed by clipping to a range (usually between -10 and 10).
 * Value function clipping - the value function loss is clipped in a manner that is similar to the PPO’s clipped surrogate objective.
+
+## Requirements
+- Python
+- Numpy
+- Pytorch
+- Tensorboard
+- Matplotlib
+- Deepmind Control Suite
+- Welford
+
+## Usage
+To train PPO on Pendulum Swingup task, run,
+
+    python ppo.py --domain pendulum --task swingup --mode train --episodes 2000 --seed 0 
+
+The data from this experiment will be stored in the folder "./log/pendulum_swingup/seed_0". This folder will contain two sub folders, (i) models : here model checkpoints will be stored and (ii) tensorboard : here tensorboard plots will be stored.
+
+To evaluate PPO on Pendulum Swingup task, run,
+
+    python ppo.py --domain pendulum --task swingup --mode eval --episodes 3 --seed 100 --checkpoint ./log/pendulum_swingup/seed_0/models/2000.ckpt --render
   
 ## References
 * "Proximal Policy Optimization Algorithms", Schulman et al. [Link](https://arxiv.org/abs/1707.06347).
