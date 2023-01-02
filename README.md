@@ -61,4 +61,4 @@ To evaluate PPO on Pendulum Swingup task, run,
     python ppo.py --domain pendulum --task swingup --mode eval --episodes 3 --seed 100 --checkpoint ./log/pendulum_swingup/seed_0/models/2000.ckpt --render
   
 ## References
-* "Proximal Policy Optimization Algorithms", Schulman et al. [Link](https://arxiv.org/abs/1707.06347).
+* John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov. Proximal policy optimization algorithms. [Link](https://arxiv.org/abs/1707.06347).
