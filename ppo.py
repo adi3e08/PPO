@@ -347,7 +347,6 @@ def parse_args():
     parser.add_argument("--gamma", type=float, default=0.99, help="discount factor")
     parser.add_argument('--gae-lambda', type=float, default=0.95, help='lambda parameter for GAE')
     parser.add_argument('--entropy-weightage', type=float, default=0.0,help='entropy term coefficient')
-    parser.add_argument('--critic-loss-weightage', type=float, default=0.5, help='value loss coefficient')
     parser.add_argument("--update-every", type=int, default=2048, help="train after every _ steps")
     parser.add_argument("--eval-every", type=int, default=50, help="eval every _ episodes during training")
     parser.add_argument("--eval-over", type=int, default=50, help="each time eval over _ episodes")
