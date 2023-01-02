@@ -4,18 +4,24 @@ This repository contains a clean and minimal implementation of Proximal Policy O
 PPO is a model-free RL algorithm for continuous action spaces. It adopts an on-policy actor-critic approach and uses stochastic policies.
 
 ## Results
-I trained DDPG on a few continuous control tasks from [Deepmind Control Suite](https://github.com/deepmind/dm_control/tree/master/dm_control/suite). Results are below.
+I trained PPO on a few continuous control tasks from [Deepmind Control Suite](https://github.com/deepmind/dm_control/tree/master/dm_control/suite). Results are below.
 
 * Cartpole Swingup : Swing up and balance an unactuated pole by applying forces to a cart at its base.
 <p align="center">
-<!-- <img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_cartpole_swingup.png" width="40%"/> -->
-<img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_cartpole_swingup.gif" width="31%"/>
+<img src="https://adi3e08.github.io/files/blog/ppo/imgs/ppo_cartpole_swingup.png" width="40%"/>
+<img src="https://adi3e08.github.io/files/blog/ppo/imgs/ppo_cartpole_swingup.gif" width="31%"/>
 </p>
 
 * Reacher Hard : Control a two-link robotic arm to reach a random target location.
 <p align="center">
-<!-- <img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_reacher_hard.png" width="40%"/> -->
-<img src="https://adi3e08.github.io/files/blog/ddpg/imgs/ddpg_reacher_hard.gif" width="31%"/>
+<img src="https://adi3e08.github.io/files/blog/ppo/imgs/ppo_reacher_hard.png" width="40%"/>
+<img src="https://adi3e08.github.io/files/blog/ppo/imgs/ppo_reacher_hard.gif" width="31%"/>
+</p>
+
+* Pendulum Swingup : Swing up and balance a simple pendulum.
+<p align="center">
+<img src="https://adi3e08.github.io/files/blog/ppo/imgs/ppo_pendulum_swingup.png" width="40%"/>
+<img src="https://adi3e08.github.io/files/blog/ppo/imgs/ppo_pendulum_swingup.gif" width="31%"/>
 </p>
 
 ## A few implementation details 
